@@ -1,9 +1,10 @@
+
 #include<iostream>
 #include<cstdlib>
 #include<ctime>
 #include<fstream>
 using namespace std;
-void Mergesort(int Array[],int p, int q,int s,int r,int A)
+void Mergesort(int Array[],int p, int q,int s,int r)
 {
 
 int num1=q-p+1,i,j,k;
@@ -15,12 +16,12 @@ int t[num1],g[num2];
 for(i=0;i<num1;i++)
 
 {
-t[i]=A[p+i];
+   t[i]=Array[p+i];
 }
 
 for(j=0;j<num2;j++)
 {
-g[j]=A[q+j+1];
+g[j]=Array[q+j+1];
 }
 
 i=0,j=0;
@@ -29,22 +30,22 @@ for(k=p;i<num1&&j<num2;k++)
 {
 if(t[i]<g[j])
 {
-A[k]=t[i++];
+Array[k]=t[i++];
 }
 else
 {
-A[k]=g[j++];
+Array[k]=g[j++];
 }
 }
 
 while(i<num1)
 {
-A[k++]=t[i++];
+Array[k++]=t[i++];
 }
 
 while(j<num2)
 {
-A[k++]=g[j++];
+Array[k++]=g[j++];
 }
 }
 
@@ -55,9 +56,9 @@ int q;
 if(p<s)
 {
 q=(p+s)/2;
-Merge(A,p,q);
-Merge(A,q+1,s);
-merge(A,p,q,s);
+Merge(Array,p,q);
+Merge(Array,q+1,s);
+Merge(Array,p,s);
 }
 
 }
@@ -81,7 +82,7 @@ int main()
     }
     fileinput.close();
 
-      merge(A,0,num-1);
+      Merge(Array,0,num-1);
 
     ofstream fileoutput;
     fileoutput.open("100koutput.txt");
@@ -97,3 +98,4 @@ int main()
     fileoutput.close();
     delete[] Array;
 }
+
